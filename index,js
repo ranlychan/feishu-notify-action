@@ -1,0 +1,51 @@
+const core = require("@actions/core");
+const axios = require("axios");
+const crypto = require("crypto");
+
+async function main() {
+  try {
+    const webhook = core.getInput("feishu_webhook");
+    const secret = core.getInput("feishu_secret");
+    const msg_type = core.getInput("msg_type");
+    const contentInput = core.getInput("content");
+    const cardInput = core.getInput("card");
+
+    const timestamp = Date.now();
+    const stringToSign = `${timestamp}\n${secret}`;
+    const sign = crypto.createHmac("sha256", secret)
+      .update(stringToSign)
+      .digest("base64");
+
+    // 构造 payload
+    const payload = {
+      timestamp: timestamp.toString(),
+      sign,
+      msg_type
+    };
+
+    if (contentInput) {
+      try {
+        payload.content = JSON.parse(contentInput);
+      } catch (err) {
+        core.setFailed(`Invalid JSON for content: ${err.message}`);
+        return;
+      }
+    }
+
+    if (cardInput) {
+      try {
+        payload.card = JSON.parse(cardInput);
+      } catch (err) {
+        core.setFailed(`Invalid JSON for card: ${err.message}`);
+        return;
+      }
+    }
+
+    await axios.post(webhook, payload);
+    core.info("Feishu notification sent successfully.");
+  } catch (err) {
+    core.setFailed(err.message);
+  }
+}
+
+main();

@@ -1,0 +1,24 @@
+{
+  "name": "feishu-notify-action",
+  "version": "1.0.0",
+  "description": "Send Feishu messages via webhook with signature, supports msg_type, content and card JSON input",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "github-actions",
+    "feishu",
+    "webhook",
+    "notification"
+  ],
+  "author": "Ranly Chan",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.12.0",
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

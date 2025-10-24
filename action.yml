@@ -1,0 +1,21 @@
+name: "Feishu Webhook Notify"
+description: "Send a message to Feishu via webhook with signature, supports msg_type, content and card JSON input"
+inputs:
+  feishu_webhook:
+    description: "Feishu webhook URL"
+    required: true
+  feishu_secret:
+    description: "Feishu webhook secret"
+    required: true
+  msg_type:
+    description: "Message type, e.g., 'text', 'post', 'interactive'"
+    required: true
+  content:
+    description: "JSON string for content field (required for text/post)"
+    required: false
+  card:
+    description: "JSON string for card field (required for interactive card)"
+    required: false
+runs:
+  using: "node16"
+  main: "index.js"
