@@ -1,0 +1,18 @@
+name: Test Feishu Notify
+
+on:
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Send Feishu Notification
+        uses: ranlychan/feishu-notify-action@main
+        with:
+          feishu_webhook: ${{ secrets.FEISHU_BOT_WEBHOOK }}
+          feishu_secret: ${{ secrets.FEISHU_BOT_SIGNKEY }}
+          msg_type: text
+          content: '{"text":"✅ 测试消息：Feishu 通知成功！"}'
