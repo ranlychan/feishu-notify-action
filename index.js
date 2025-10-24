@@ -41,8 +41,16 @@ async function main() {
       }
     }
 
-    await axios.post(webhook, payload);
-    core.info("Feishu notification sent successfully.");
+    const response = await axios.post(webhook, payload);
+
+    console.log("Feishu response:", JSON.stringify(response.data, null, 2));
+
+    // 判断飞书返回
+    if (response.data.code !== 0) {
+      core.setFailed(`Feishu webhook failed: ${response.data.msg}`);
+    } else {
+      core.info("Feishu notification sent successfully.");
+    }
   } catch (err) {
     core.setFailed(err.message);
   }
