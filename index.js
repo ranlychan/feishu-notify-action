@@ -10,11 +10,11 @@ async function main() {
     const contentInput = core.getInput("content");
     const cardInput = core.getInput("card");
 
-    const timestamp = Date.now();
+    const timestamp = Math.floor(Date.now() / 1000);
     const stringToSign = `${timestamp}\n${secret}`;
-    const sign = crypto.createHmac("sha256", secret)
-      .update(stringToSign)
-      .digest("base64");
+    const hmac = crypto.createHmac("sha256", stringToSign);
+    hmac.update(Buffer.alloc(0)); 
+    const sign = hmac.digest("base64");
 
     // 构造 payload
     const payload = {
