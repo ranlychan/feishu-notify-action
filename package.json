@@ -15,7 +15,7 @@
   "author": "Ranly Chan",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.12.0",
+    "@actions/core": "^1.10.0",
     "axios": "^1.6.0"
   },
   "engines": {
