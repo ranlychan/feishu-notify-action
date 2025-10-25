@@ -6,6 +6,9 @@
 
 官方示例实现：
 
+![官方示例实现](https://github.com/ranlychan/feishu-notify-action/blob/main/demo.jpg)
+
+
 ```yml
 name: Test Feishu Notify
 
