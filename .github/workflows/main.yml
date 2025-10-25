@@ -31,7 +31,7 @@ jobs:
           feishu_webhook: ${{ secrets.FEISHU_BOT_WEBHOOK }}
           feishu_secret: ${{ secrets.FEISHU_BOT_SIGNKEY }}
           msg_type: share_chat
-          content: "{\"share_chat_id\":\"oc_f5b1a7eb27ae2****339ff\"}"
+          content: "{\"share_chat_id\":\"${{ secrets.FEISHU_GROUP_ID_1 }}\"}"
 
       - name: Send Feishu Image Notification
         uses: ranlychan/feishu-notify-action@main
