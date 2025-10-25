@@ -9,10 +9,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Send Feishu Notification
+      - name: Send Feishu Text Notification
         uses: ranlychan/feishu-notify-action@main
         with:
           feishu_webhook: ${{ secrets.FEISHU_BOT_WEBHOOK }}
           feishu_secret: ${{ secrets.FEISHU_BOT_SIGNKEY }}
           msg_type: text
           content: '{"text":"✅ 测试消息：Feishu 通知成功！"}'
+
+      - name: Send Feishu Rich Text Notification
+        uses: ranlychan/feishu-notify-action@main
+        with:
+          feishu_webhook: ${{ secrets.FEISHU_BOT_WEBHOOK }}
+          feishu_secret: ${{ secrets.FEISHU_BOT_SIGNKEY }}
+          msg_type: post
+          content: "{\"post\":{\"zh_cn\":{\"title\":\"项目更新通知\",\"content\":[[{\"tag\":\"text\",\"text\":\"项目有更新: \"},{\"tag\":\"a\",\"text\":\"请查看\",\"href\":\"https://www.ranlychan.top/\"},{\"tag\":\"at\",\"user_id\":\"all\"}]]}}}"
