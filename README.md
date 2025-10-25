@@ -2,6 +2,10 @@
 
 用于在Github Action工作流中向自己的飞书机器人webhook发送自定义消息，支持传入消息类型和消息体，因此理论上支持飞书机器人的所有消息类型。目前强制使用签名校验方式进行安全校验。
 
+为了保护Webhook地址安全，请使用Github的Secrets而不要直接在workflow里明文写Webhook地址。配置位置在`仓库设置 -> Actions secrets and variables -> Actions -> Repository secrets`
+
+添加群机器人时，请复制Webhook地址并添加到Secrets，命名为`FEISHU_BOT_WEBHOOK`; 必须勾选启用签名校验，并将校验秘钥同样添加到Secrets，命名为`FEISHU_BOT_SIGNKEY`。
+
 飞书机器人文档：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot?lang=zh-CN#3c6592d6
 
 官方示例实现：
